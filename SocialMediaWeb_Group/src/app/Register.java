@@ -41,7 +41,6 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub\
-		String message = "";
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
@@ -61,6 +60,19 @@ public class Register extends HttpServlet {
 		user.setNickname(nickname);
 		user.setPassword(password);
 	
+		String message = regiserUser(user);
+		request.setAttribute("message", message);
+		request.setAttribute("user", user);
+		
+		if(!message.equals("")) {
+			request.getRequestDispatcher("./").forward(request, response);
+		} else {
+			request.getRequestDispatcher("DisplayUserList").forward(request, response);
+		}
+	}
+	
+	public static String regiserUser(Dbuser user) {
+		String message = "";
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		try {
@@ -73,11 +85,7 @@ public class Register extends HttpServlet {
 		} finally {
 			em.close();
 		}
-		
-		request.setAttribute("message", message);
-		request.setAttribute("user", user);
-		
-		request.getRequestDispatcher("DisplayUserList").forward(request, response);
+		return message;
 	}
 
 }
