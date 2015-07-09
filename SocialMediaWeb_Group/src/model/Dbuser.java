@@ -10,7 +10,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="DBUSER", schema="FAKEFACEBOOK")
-@NamedQuery(name="Dbuser.findAll", query="SELECT d FROM Dbuser d")
+@NamedQueries({
+	@NamedQuery(name="Dbuser.findAll", query="SELECT d FROM Dbuser d"),
+	@NamedQuery(name="Dbuser.findUserByEmailAndPassword", query="SELECT d FROM Dbuser d where d.email = :email and d.password = :password"),
+	@NamedQuery(name="Dbuser.findUserByUserid", query="SELECT d FROM Dbuser d where d.userid = :userid")
+})
 public class Dbuser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
