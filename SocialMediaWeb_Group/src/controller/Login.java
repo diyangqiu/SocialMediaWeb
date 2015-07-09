@@ -60,6 +60,9 @@ public class Login extends HttpServlet {
 			}
 		}//END TRY
 		catch (Exception e){	
+			session.setAttribute("log", false);
+			request.setAttribute("message", "Your Email/Password combination is incorect.");
+			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		
 		
