@@ -16,7 +16,7 @@ import mytools.DBUtil;
 /**
  * SERVLET implementation class Logon.java
  */
-@WebServlet("/Logon")
+@WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -33,12 +33,14 @@ public class Login extends HttpServlet {
 		request.setAttribute("message", null);
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		
+		
+		
 		try {
 			Dbuser user = (Dbuser) em.createNamedQuery("Dbuser.findUserByEmailAndPassword")
 					.setParameter("email", request.getParameter("email"))
 					.setParameter("password", request.getParameter("password"))
 					.getSingleResult();			
-					
+			
 			/* If they exist:
 			 * Create/set the logged in session variable to true.
 			 * Redirect them to the user-list Servlet.java.
@@ -59,6 +61,8 @@ public class Login extends HttpServlet {
 		}//END TRY
 		catch (Exception e){	
 		}
+		
+		
 	}//END doPost
 	
 	//Returns if the customer email exists.
