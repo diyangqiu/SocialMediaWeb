@@ -16,7 +16,7 @@
 	<c:forEach items="${userlist}" var="user">
 	
 	
-	<tr><td><a href="/DisplayCustomerDetails?id=${user.userid}">${user.name}</a></td><td></td>
+	<tr><td><a href="/displayUserDetails?id=${user.userid}">${user.name}</a></td><td></td>
 	
 	<td>${user.nickname}</td></tr>
 	
