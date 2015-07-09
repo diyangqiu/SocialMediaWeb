@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 			if( existEvaluate(user) == true ){
 				session.setAttribute("log", true);
 				session.setAttribute("user", user);
-				getServletContext().getRequestDispatcher("/UserList.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/DisplayUserList").forward(request, response);
 			}else{
 				session.setAttribute("log", false);
 				request.setAttribute("message", "Your Email/Password combination is incorect.");
