@@ -1,4 +1,4 @@
-package logintest;
+package appTest;
 
 import static org.junit.Assert.*;
 import model.Dbuser;

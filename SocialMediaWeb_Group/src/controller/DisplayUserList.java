@@ -51,6 +51,7 @@ public class DisplayUserList extends HttpServlet {
 			
 			List<Dbuser> userlist = em.createNamedQuery("Dbuser.findAll").getResultList();
 			request.setAttribute("userlist", userlist);
+			
 			//System.out.println(userlist.size());
 			
 		}catch(Exception e){

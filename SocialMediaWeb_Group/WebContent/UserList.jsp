@@ -9,15 +9,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+<table>
+	<th>Name</th><th></th><th>Nick Name</th>
+
+	
 	<c:forEach items="${userlist}" var="user">
-	${user.name}<br>
-	${user.nickname}<br>
-	${user.address}<br>
-	${user.favmovie}<br>
-	${user.favsong}<br>
-	${user.favcolor}<br>
+	
+	
+	<tr><td><a href="/DisplayCustomerDetails?id=${user.userid}">${user.name}</a></td><td></td>
+	
+	<td>${user.nickname}</td></tr>
+	
 	
 	</c:forEach>
+	</table>
 	<a href ="/index.jsp">Back</a>
 </body>
 </html>
