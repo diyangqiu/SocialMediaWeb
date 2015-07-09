@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Dbuser;
 
+
 /**
  * Servlet implementation class displayUserDetails
  */
@@ -48,29 +49,28 @@ public class DisplayUserDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String tableInfo = "";
+		String userID = request.getParameter("userid");
 
-		List<Dbuser> userdetails = displayUserDetails();
+		Dbuser user = displayUserDetails(userID);
 
+		
 		try {
 
 			tableInfo += tableInfo += "<tr><th>Nickname</th><th>Name</th><th>Email Address</th><th>Address</th><th>Favorite Song</th><th>Favorite Movie</th><th>Favorite Color</th></tr>";
 			
-			request.setAttribute("tableInfo", tableInfo);
 			
-			for (int i = 0; i < userdetails.size(); i++) {
-
-				tableInfo += "<tr><td>" + userdetails.get(i).getNickname()
-						+ "</th><th>" + userdetails.get(i).getName()
-						+ "</th><th>" + userdetails.get(i).getEmail()
-						+ "</th><th>" + userdetails.get(i).getAddress()
-						+ "</th><th>" + userdetails.get(i).getFavsong()
-						+ "</th><th>" + userdetails.get(i).getFavmovie()
-						+ "</th><th>" + userdetails.get(i).getFavcolor()
+			tableInfo += "<tr><td>" + user.getNickname()
+						+ "</th><th>" + user.getName()
+						+ "</th><th>" + user.getEmail()
+						+ "</th><th>" + user.getAddress()
+						+ "</th><th>" + user.getFavsong()
+						+ "</th><th>" + user.getFavmovie()
+						+ "</th><th>" + user.getFavcolor()
 						+ "</td></tr>";
-
-			}
 			request.setAttribute("tableInfo", tableInfo);
-		} catch (Exception e) {
+			}		
+		
+			catch (Exception e) {
 			request.setAttribute(
 					"message",
 					"<div class='alert alert-danger' role='alert'>Error! Could not diplay users details! "
@@ -82,19 +82,18 @@ public class DisplayUserDetails extends HttpServlet {
 				.forward(request, response);
 	}
 
-	protected static List<Dbuser> displayUserDetails() {
+	protected static Dbuser displayUserDetails(String userID) {
 
 		EntityManager em = mytools.DBUtil.getEmFactory().createEntityManager();
-		String qString = "SELECT d FROM Dbuser d";
+		String qString = "SELECT d FROM Dbuser d where d.userid = :userid";
 		TypedQuery<Dbuser> q = em.createQuery(qString, Dbuser.class);
-		System.out.println("1");
-		List<Dbuser> i = null;
+		q.setParameter("UserID", Long.parseLong(userID));
+	
+		Dbuser i = null;
 		try {
 
-			i = q.getResultList();
-			if (i == null || i.isEmpty()) {
-				i = null;
-			}
+			i = q.getSingleResult();
+			
 		} catch (NoResultException e) {
 			System.out.println(e);
 			System.out.println("2");
@@ -106,4 +105,5 @@ public class DisplayUserDetails extends HttpServlet {
 
 		return i;
 	}
+	
 }
