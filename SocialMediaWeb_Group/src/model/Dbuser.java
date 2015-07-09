@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="DBUSER", schema="testuser")
+@Table(name="DBUSER", schema="FAKEFACEBOOK")
 @NamedQueries({
 	@NamedQuery(name="Dbuser.findAll", query="SELECT d FROM Dbuser d"),
 	@NamedQuery(name="Dbuser.findUserByEmailAndPassword", query="SELECT d FROM Dbuser d where d.email = :email and d.password = :password"),
