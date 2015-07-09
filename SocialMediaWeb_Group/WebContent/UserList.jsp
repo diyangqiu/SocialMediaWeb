@@ -12,6 +12,11 @@
 	<c:forEach items="${userlist}" var="user">
 	${user.name}<br>
 	${user.nickname}<br>
+	${user.address}<br>
+	${user.favmovie}<br>
+	${user.favsong}<br>
+	${user.favcolor}<br>
+	
 	</c:forEach>
 	<a href ="/index.jsp">Back</a>
 </body>

@@ -2,6 +2,7 @@
     <wb-module deploy-name="SocialMediaWeb_Group">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/SocialMediaTest"/>
         <property name="context-root" value="SocialMediaWeb_Group"/>
         <property name="java-output-path" value="/SocialMediaWeb_Group/build/classes"/>
     </wb-module>
