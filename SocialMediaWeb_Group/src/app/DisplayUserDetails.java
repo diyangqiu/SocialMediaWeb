@@ -49,8 +49,8 @@ public class DisplayUserDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String tableInfo = "";
-		String userID = request.getParameter("userid");
-
+		String userID = request.getParameter("id");
+		System.out.println(userID);
 		Dbuser user = displayUserDetails(userID);
 
 		
@@ -87,7 +87,7 @@ public class DisplayUserDetails extends HttpServlet {
 		EntityManager em = mytools.DBUtil.getEmFactory().createEntityManager();
 		String qString = "SELECT d FROM Dbuser d where d.userid = :userid";
 		TypedQuery<Dbuser> q = em.createQuery(qString, Dbuser.class);
-		q.setParameter("UserID", Long.parseLong(userID));
+		q.setParameter("userid", Long.parseLong(userID));
 	
 		Dbuser i = null;
 		try {
