@@ -34,7 +34,6 @@ public class Login extends HttpServlet {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		
 		try {
-			//When Jason's method is created for model.Dbuser.java. to get one user the place holder name getOne can be replaced.
 			Dbuser user = (Dbuser) em.createNamedQuery("Dbuser.findUserByEmailAndPassword")
 					.setParameter("email", request.getParameter("email"))
 					.setParameter("password", request.getParameter("password"))
@@ -51,10 +50,9 @@ public class Login extends HttpServlet {
 			if( existEvaluate(user) == true ){
 				session.setAttribute("log", true);
 				session.setAttribute("user", user);
-				//("/UserList") needs to be replaced with Shruthi's Servlet.java name.
 				getServletContext().getRequestDispatcher("/UserList.jsp").forward(request, response);
 			}else{
-				session.setAttribute("logn", false);
+				session.setAttribute("log", false);
 				request.setAttribute("message", "Your Email/Password combination is incorect.");
 				getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 			}
@@ -65,6 +63,6 @@ public class Login extends HttpServlet {
 	
 	//Returns if the customer email exists.
 	protected boolean existEvaluate(Dbuser user){
-		return (user.getEmail() != null) ? true : false;
+		return (user.getEmail() != null && user.getEmail() != "") ? true : false;
 	}//END existEvaluate
 }//END Servlet.Class Logon.java
