@@ -9,7 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach items="${userlist}" var="user"></c:forEach>
+	<c:forEach items="${userlist}" var="user">
+	${user.name}<br>
+	${user.nickname}<br>
+	</c:forEach>
 	<a href ="/index.jsp">Back</a>
 </body>
 </html>

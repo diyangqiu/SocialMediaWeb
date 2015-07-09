@@ -33,7 +33,7 @@ public class DisplayUserList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request,response);
 	}
 
 	/**
@@ -43,28 +43,15 @@ public class DisplayUserList extends HttpServlet {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String name = request.getParameter("name");
-		String nickname = request.getParameter("nickname");
-		String address = request.getParameter("address");
-		String favsong = request.getParameter("favsong");
-		String favcolor = request.getParameter("favcolor");
-		String favmovie = request.getParameter("favmovie");
-		Dbuser user = new Dbuser();
-		user.setPassword(password);
-		user.setNickname(nickname);
-		user.setName(name);
-		user.setAddress(address);
-		user.setEmail(email);
-		user.setFavcolor(favcolor);
-		user.setFavmovie(favmovie);
-		user.setFavsong(favsong);
+																									
 		
 		try{
-			em.persist(user);
-			List<Dbuser> userlist = em.createQuery("select c from Dbuser c").getResultList();
+			//em.persist(user); No need of persist to retrieve from the d/b its needed to send value to the d/b
+			
+			
+			List<Dbuser> userlist = em.createNamedQuery("Dbuser.findAll").getResultList();
 			request.setAttribute("userlist", userlist);
+			//System.out.println(userlist.size());
 			
 		}catch(Exception e){
 			System.out.println("Exception in Display user servlet"+e.getMessage());
@@ -75,3 +62,22 @@ public class DisplayUserList extends HttpServlet {
 	}
 
 }
+//These are to register the user it's jason's module i.e these lines before try is to get the parameter from the user input
+//and set the value in the d/b
+/*String email = request.getParameter("email");
+String password = request.getParameter("password");
+String name = request.getParameter("name");
+String nickname = request.getParameter("nickname");
+String address = request.getParameter("address");
+String favsong = request.getParameter("favsong");
+String favcolor = request.getParameter("favcolor");
+String favmovie = request.getParameter("favmovie"); 
+Dbuser user = new Dbuser();
+user.setPassword(password);
+user.setNickname(nickname);
+user.setName(name);
+user.setAddress(address);
+user.setEmail(email);
+user.setFavcolor(favcolor);
+user.setFavmovie(favmovie);
+user.setFavsong(favsong); */
