@@ -16,7 +16,7 @@
 		<c:if test="${message != null}">
 			<div class='alert alert-danger' role='alert'><c:out value="${message}" /></div>
 		</c:if>
-		<form class="form-horizontal col-sm-offset-0" action="Logon" method="post">
+		<form class="form-horizontal col-sm-offset-0" action="Login" method="post">
 			<div class="form-group">
 				<label for="email" class="col-sm-3 control-label">Email</label>
 				<div class="col-sm-5">
