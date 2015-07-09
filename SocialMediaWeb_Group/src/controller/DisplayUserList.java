@@ -63,22 +63,3 @@ public class DisplayUserList extends HttpServlet {
 	}
 
 }
-//These are to register the user it's jason's module i.e these lines before try is to get the parameter from the user input
-//and set the value in the d/b
-/*String email = request.getParameter("email");
-String password = request.getParameter("password");
-String name = request.getParameter("name");
-String nickname = request.getParameter("nickname");
-String address = request.getParameter("address");
-String favsong = request.getParameter("favsong");
-String favcolor = request.getParameter("favcolor");
-String favmovie = request.getParameter("favmovie"); 
-Dbuser user = new Dbuser();
-user.setPassword(password);
-user.setNickname(nickname);
-user.setName(name);
-user.setAddress(address);
-user.setEmail(email);
-user.setFavcolor(favcolor);
-user.setFavmovie(favmovie);
-user.setFavsong(favsong); */
